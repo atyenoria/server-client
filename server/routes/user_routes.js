@@ -16,7 +16,7 @@ module.exports = function loadUserRoutes(router, passport) {
   }));
 
   router.post('/sign_up', passport.authenticate('local-signup'), function(req, res) {
-    console.log(req.user)
+    // console.log(req.user)
     res.json(req.user);
 
   });
@@ -34,7 +34,7 @@ module.exports = function loadUserRoutes(router, passport) {
   router.get('/load_auth_into_state', function(req, res) {
 
 
-    console.log(req.user);
+    console.log(req.session);
     res.json(req.user);
 
 

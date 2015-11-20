@@ -36,6 +36,7 @@ export default class Chat extends Component {
     socket.on('new channel', channel =>
       actions.receiveRawChannel(channel)
     );
+
     if (!this.props.user.username) {
       actions.loadAuth();
     }

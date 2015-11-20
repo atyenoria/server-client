@@ -7,8 +7,10 @@ import WelcomePage from '../components/WelcomePage';
 import configureStore from '../store/configureStore';
 import ChatContainer from './ChatContainer';
 import ChatCContainer from './ChatCContainer';
+import Test from '../components/Test';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 const store = configureStore();
+import DiffMonitor from 'redux-devtools-diff-monitor';
 
 export default class Root extends Component {
   static propTypes = {
@@ -26,14 +28,13 @@ export default class Root extends Component {
             <Route path="/welcome" component={WelcomePage} />
             <Route path="/chat" component={ChatContainer} />
             <Route path="/chatc" component={ChatCContainer} />
+            <Route path="/test" component={Test} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
           </Router>
         </Provider>
         <DebugPanel top right bottom>
-                  <DevTools store={store}
-                    monitor={LogMonitor}
-                    visibleOnLoad={true} />
+                  <DevTools store={store} monitor={DiffMonitor} shortcut='ctrl+d' />
         </DebugPanel>
       </div>
     );

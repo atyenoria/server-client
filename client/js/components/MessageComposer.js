@@ -49,6 +49,8 @@ export default class MessageComposer extends Component {
       this.setState({ typing: false});
     }
   }
+
+
   render() {
     return (
       <div style={{

@@ -15,14 +15,38 @@ var compiler = webpack(config);
 var passport = require('passport');
 require('./config/passport')(passport);
 
+var MongoStore = require('connect-mongo')(session);
+
 var User = require('./server/models/User');
 //set env vars
 process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/chat_dev';
 process.env.PORT = 3000;
 
-console.log("pass")
+
 // connect our DB
 mongoose.connect(process.env.MONGOLAB_URI);
+// Basic usage
+
+// app.use(session({
+//   secret: 'keyboard kitty',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { maxAge: 600000000 }
+// }));
+
+app.use(session({
+    secret: 'secret',
+    store: new MongoStore({ url: 'mongodb://localhost/test-app' }),
+    cookie: {
+        httpOnly: false,
+        maxAge: new Date(Date.now() + 60 * 60 * 1000)
+    },
+    resave: true,
+    saveUninitialized: true
+}));
+
+
+
 process.on('uncaughtException', function (err) {
   console.log(err);
 });
@@ -34,12 +58,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.use(cors());
-app.use(session({
-  secret: 'keyboard kitty',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 600000000 }
-}));
+
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -50,10 +70,12 @@ var channelRouter = express.Router();
 require('./server/routes/message_routes')(messageRouter);
 require('./server/routes/channel_routes')(channelRouter);
 require('./server/routes/user_routes')(usersRouter, passport);
+// require('./server/routes/user_routes')(usersRouter)
 app.use('/api', messageRouter);
 app.use('/api', usersRouter);
 app.use('/api', channelRouter);
 app.get('*', function(req, res) {
+  // console.log(req)
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 

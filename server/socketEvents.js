@@ -1,7 +1,27 @@
+var count=0
+
 exports = module.exports = function(io) {
   io.on('connection', function(socket) {
+    // console.log(socket)
+
+    if((count % 2) === 1){socket.join('room1')}else{
+    socket.join('room2')
+    }
+
+    // socket.join('room2')
+
+    // count +=1
+    // console.log(count % 2)
+    // console.log (count)
+    // var clients = io.sockets.adapter.rooms['test room'];
+    // console.log(clients);
+    // for (var clientId in clients) {
+    // console.log(io.sockets.connected[clientId]);
+    // }
+
     socket.on('new message', function(msg) {
-      socket.broadcast.emit('new bc message', msg);
+      socket.to('room2').emit('new bc message', msg);
+      // socket.broadcast.emit('new bc message', msg);
       console.log('new message')
     });
     socket.on('new channel', function(channel) {
