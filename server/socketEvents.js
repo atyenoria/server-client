@@ -21,6 +21,8 @@ exports = module.exports = function(io) {
 
     socket.on('new message', function(msg) {
       socket.to('room2').emit('new bc message', msg);
+      console.log(socket.id)
+      // console.log(this.socket.sessionid);
       // socket.broadcast.emit('new bc message', msg);
       console.log('new message')
     });

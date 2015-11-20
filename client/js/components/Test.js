@@ -33,7 +33,6 @@ export default class WelcomePage extends Component {
       text: '',
       typing: false
     };
-    document.cookie = 'connect.sid=s%3AA7twEF-qCCoqipwmWdPpb0KcocYC2hdC.t4ew3aZyIuwdZG1GXxE9ABQAAWdWk3vbA'
   }
 
 

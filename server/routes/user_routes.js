@@ -16,13 +16,26 @@ module.exports = function loadUserRoutes(router, passport) {
   }));
 
   router.post('/sign_up', passport.authenticate('local-signup'), function(req, res) {
-    // console.log(req.user)
+    console.log(req)
     res.json(req.user);
 
   });
 
   router.post('/sign_in', passport.authenticate('local-login'), function(req, res) {
+
+    User.find({username: req.body.username}, function(err, data) {
+      if (err) {
+      console.log(err)
+        return res.status(500).json({msg: 'error validating username'})
+      }
+      if (data.length > 0) {
+      console.log("ok")
+      } else {
+      console.log("ok")
+      }
+    }).limit(1)
     res.json(req.user);
+
   });
 
   router.get('/signout', function(req, res) {

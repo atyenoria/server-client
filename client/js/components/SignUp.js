@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/Actions';
 import { Input, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
+const socket = io();
 @connect(state => ({
   welcomePage: state.welcomePage,
   userValidation: state.userValidation.data
@@ -55,6 +56,7 @@ export default class SignUp extends Component {
       const userObj = {
         username: this.state.username,
         password: this.state.password,
+        socketio: socket.io.engine.id,
         confirmPassword: this.state.confirmPassword
       };
       dispatch(Actions.signUp(userObj)).then(() => {

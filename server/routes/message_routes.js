@@ -18,6 +18,7 @@ module.exports = function(router) {
 
   //post a new message to db
   router.post('/newmessage', function(req, res) {
+    // console.log(req)
     var newMessage = new Message(req.body);
     newMessage.save(function (err, data) {
       if(err) {

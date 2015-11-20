@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import * as Actions from '../actions/Actions';
 import { connect } from 'react-redux';
 import { Button, Input } from 'react-bootstrap';
+const socket = io();
 
 @connect(state => ({
   welcomePage: state.welcomePage,
@@ -44,7 +45,8 @@ export default class SignIn extends Component {
     if (this.state.username.length > 0 && this.state.password.length > 0) {
       var userObj = {
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
+        socketio: socket.io.engine.id
       };
       dispatch(Actions.signIn(userObj)).then(() => {
         this.context.router.transitionTo('/chat');

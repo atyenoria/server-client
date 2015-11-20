@@ -36,6 +36,7 @@ export default class MessageComposer extends Component {
       this.props.onSave(newMessage);
       this.setState({ text: '', typing: false });
       socket.emit('stop typing');
+      console.log(socket.io.engine.id)
     }
   }
   handleChange(event) {
