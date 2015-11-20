@@ -67,4 +67,4 @@ var webpackServer = app.listen(process.env.PORT, 'localhost', function(err) {
 
 // attach socket.io onto our development server
 var io = require('socket.io')(webpackServer);
-var socketEvents = require('./socketEvents')(io);
+var socketEvents = require('./server/socketEvents')(io);
