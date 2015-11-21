@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ChannelListItem from './ChannelListItem';
 import ChannelListModalItem from './ChannelListModalItem';
 import { Modal, Glyphicon, Input, Button } from 'react-bootstrap';
-const socket = io();
+const socket = io.connect('client.devtest.com:3000');
 // const socket = io.connect('http://localhost:3001', {reconnect: true});
 import * as UserAPIUtils from '../utils/UserAPIUtils';
 

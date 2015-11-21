@@ -3,7 +3,7 @@ import superagent_chache from 'superagent-cache'
 
 // var superagent = superagent_chache()
 
-var HOST='http://local.server.com'
+var HOST='server.devtest.com:3000'
 
 
 

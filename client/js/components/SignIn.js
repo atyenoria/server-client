@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import * as Actions from '../actions/Actions';
 import { connect } from 'react-redux';
 import { Button, Input } from 'react-bootstrap';
-const socket = io();
+const socket = io.connect('client.devtest.com:3000');
 
 @connect(state => ({
   welcomePage: state.welcomePage,

@@ -95,7 +95,7 @@ var server = app.listen(process.env.PORT, 'localhost', function(err) {
     console.log(err);
     return;
   }
-  console.log('server listening on port: %s', process.env.PORT);
+  console.log('Server Side listening on port: %s', process.env.PORT);
 });
 
 
