@@ -4,7 +4,7 @@ import MessageListItem from './MessageListItem';
 import Channels from './Channels';
 import * as Actions from '../actions/Actions';
 import TypingListItem from './TypingListItem';
-// const socket = io.connect('server.devtest.com:3000');
+const socket = io.connect('server.devtest.com:3000');
 // const socket = io.connect('http://localhost:3001', {reconnect: true});
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
@@ -42,6 +42,7 @@ export default class Chat extends Component {
     socket.on('test', () => {
     var socketid = {socketid: socket.io.engine.id}
     actions.loadAuth(socketid)
+    actions.gettest()
     });
     // var userObj = {socketid: socket.io.engine.id};
     // console.log(message);

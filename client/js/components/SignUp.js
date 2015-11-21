@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/Actions';
 import { Input, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
-// const socket = io.connect('server.devtest.com:3000');
+const socket = io.connect('server.devtest.com:3000');
+
 @connect(state => ({
   welcomePage: state.welcomePage,
   userValidation: state.userValidation.data

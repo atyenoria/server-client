@@ -122,9 +122,9 @@ server.on('error', function(err, req, res) {
 });
 
 
-// server.on( 'upgrade', function( req, socket, head ) {
-//     webSocketProxy.ws( req, socket, head );
-// });
+server.on( 'upgrade', function( req, socket, head ) {
+    webSocketProxy.ws( req, socket, head );
+});
 
 process.env.PORT = 3000;
 server.listen(process.env.PORT);

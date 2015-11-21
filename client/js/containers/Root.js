@@ -32,9 +32,9 @@ export default class Root extends Component {
             <Route path="/signup" component={SignUp} />
           </Router>
         </Provider>
-        <DebugPanel top right bottom>
-                  <DevTools store={store} monitor={DiffMonitor} shortcut='ctrl+d' />
-        </DebugPanel>
+        // <DebugPanel top right bottom>
+        //           <DevTools store={store} monitor={DiffMonitor} shortcut='ctrl+d' />
+        // </DebugPanel>
       </div>
     );
   }

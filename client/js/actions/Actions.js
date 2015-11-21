@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes';
 import * as UserAPIUtils from '../utils/UserAPIUtils';
 import fetch from 'isomorphic-fetch';
-
+var HOST='http://localhost:3002'
 
 
 export function addMessage(message) {
@@ -128,7 +128,7 @@ function requestMessages() {
 export function fetchMessages() {
   return dispatch => {
     dispatch(requestMessages())
-    return fetch('/api/messages')
+    return fetch(HOST+'/api/messages')
       .then(response => response.json())
       .then(json => dispatch(receiveMessages(json)))
   }
@@ -156,3 +156,15 @@ export function fetchMessagesIfNeeded() {
   }
 }
 
+
+
+
+
+export function gettest() {
+  return {
+    types: [types.TEST_LOAD,
+      types.TEST_SUCCESS,
+      types.TEST_FAIL],
+    promise: UserAPIUtils.gettest()
+  };
+}

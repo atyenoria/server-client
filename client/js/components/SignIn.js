@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import * as Actions from '../actions/Actions';
 import { connect } from 'react-redux';
 import { Button, Input } from 'react-bootstrap';
-// const socket = io.connect('server.devtest.com:3000');
+const socket = io.connect('server.devtest.com:3000');
 
 @connect(state => ({
   welcomePage: state.welcomePage,
@@ -49,7 +49,7 @@ export default class SignIn extends Component {
         socketid: socket.io.engine.id
       };
       dispatch(Actions.signIn(userObj)).then(() => {
-        this.context.router.transitionTo('/chat');
+        // this.context.router.transitionTo('/chat');
       });
       this.setState({ username: '', password: ''});
     }

@@ -3,7 +3,7 @@ var count=0
 
 exports = module.exports = function(io) {
   io.on('connection', function(socket) {
-    // console.log(socket)
+    // console.log(socket.nsp.server.engine.clients)
 
     if((count % 2) === 1){socket.join('room1')}else{
     socket.join('room2')

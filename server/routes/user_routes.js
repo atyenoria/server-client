@@ -17,6 +17,8 @@ module.exports = function loadUserRoutes(router, passport) {
 
   router.post('/sign_up', passport.authenticate('local-signup'), function(req, res) {
     console.log(req.body);
+    req.session.hoge = "hogehoge";
+    req.session.save(function(){ res.send() });
     res.json(req.user);
   });
 
@@ -37,12 +39,15 @@ module.exports = function loadUserRoutes(router, passport) {
   router.post('/load_auth_into_state', function(req, res) {
 
     console.log("+++++++++++++load_auth_into_state+++++++++++++")
-    console.log(req.body);
+    console.log(req.user);
+    // console.log(req);
+
+
     // console.log(req.body);
     // console.log(req.user);
 
     res.json(req.user);
-    console.log(req.user.local.username)
+    // console.log(req.user.local.username)
 
      // User.findOneAndUpdate({ 'local.username': req.user.local.username}, function(err, user) {
      //  if (err) {
@@ -67,37 +72,37 @@ module.exports = function loadUserRoutes(router, passport) {
      //  });
 
 
-   User.findOne({ 'local.username': req.user.local.username}, function(err, user) {
+  //  User.findOne({ 'local.username': req.user.local.username}, function(err, user) {
 
-      console.log(req.body)
+  //     console.log(req.body)
 
-      if (err) {
-        console.log("tura!")
-      }
-      if (user) {
-       console.log("tubr!")
-      } else {
-        var newUser = new User();
-        newUser.local.username = "username";
-        newUser.local.password = "newUser.generateHash(password);"
-        newUser.local.socketid = "req.body.socketid;"
+  //     if (err) {
+  //       console.log("tura!")
+  //     }
+  //     if (user) {
+  //      console.log("tubr!")
+  //     } else {
+  //       var newUser = new User();
+  //       newUser.local.username = "username";
+  //       newUser.local.password = "newUser.generateHash(password);"
+  //       newUser.local.socketid = "req.body.socketid;"
 
-        newUser.save(function(err, user) {
-          if (err) {
-            throw err;
-          }
-          console.log("turc!")
-        });
-      }
-
-
-
-  })
+  //       newUser.save(function(err, user) {
+  //         if (err) {
+  //           throw err;
+  //         }
+  //         console.log("turc!")
+  //       });
+  //     }
 
 
 
+  // })
 
-    console.log("+++++++++++++load_auth_into_state+++++++++++++")
+
+
+
+  //   console.log("+++++++++++++load_auth_into_state+++++++++++++")
 
 
 

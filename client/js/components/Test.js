@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
 import FBSignIn from './FBSignIn';
 import strftime from 'strftime';
-// const socket = io.connect('server.devtest.com:3000');
+const socket = io.connect('server.devtest.com:3000');
 
 
 @connect()
@@ -32,7 +32,7 @@ export default class WelcomePage extends Component {
                 time: "12:30"}],
       text: '',
       typing: false
-    };l
+    };
   }
 
 
@@ -42,6 +42,10 @@ export default class WelcomePage extends Component {
     const { actions } = this.props
     socket.on('new bc message', msg =>
     this.setState({message: [...this.state.message, msg] })
+    )
+
+    socket.on('test', msg =>
+    console.log(msg)
     )
 
 

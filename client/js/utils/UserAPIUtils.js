@@ -3,13 +3,17 @@ import superagent_chache from 'superagent-cache'
 
 // var superagent = superagent_chache()
 
-var HOST='server.devtest.com:3000'
+var HOST='http://server.devtest.com:3000'
+
+// var HOST='localhost:3002'
+
 
 
 
 
 export function loadAuth(user) {
   return new Promise((resolve, reject) => {
+
     superagent
     .post(HOST+'/api/load_auth_into_state')
     .send(user)
@@ -63,6 +67,7 @@ export function signOut() {
     });
   });
 }
+
 
 
 export function usernameValidationList() {
@@ -133,6 +138,23 @@ export function loadInitialChannels() {
       } else {
         const rawChannels = res.body;
         resolve(rawChannels);
+      }
+    });
+  });
+}
+
+
+
+
+export function gettest() {
+  return new Promise((resolve, reject) => {
+    superagent
+    .get(HOST+'/')
+    .end((err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(true);
       }
     });
   });

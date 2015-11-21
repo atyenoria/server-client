@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import * as UserAPIUtils from '../utils/UserAPIUtils';
-// const socket = io.connect('server.devtest.com:3000');
+const socket = io.connect('server.devtest.com:3000');
 // const socket = io.connect('http://localhost:3001', {reconnect: true});
 import strftime from 'strftime';
 import { Input } from 'react-bootstrap';

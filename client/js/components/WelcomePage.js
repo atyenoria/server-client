@@ -35,7 +35,7 @@ export default class WelcomePage extends Component {
     return (
       <div>
         <header style={{display: 'flex', justifyContent: 'center', flexGrow: '0', order: '0'}}>
-          <p style={{fontSize: '1.5em', marginRight: '1em'}}>Welcaaaaaaome to aaRaaaaaduxvv Socket.io Chat</p>
+          <p style={{fontSize: '1.5em', marginRight: '1em'}}>Weaaauxvv Socket.io Chat</p>
         </header>
         <FBSignIn />
         <main style={{display: 'flex', justifyContent: 'center'}}>
