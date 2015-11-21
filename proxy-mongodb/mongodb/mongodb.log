@@ -1,0 +1,52 @@
+2015-11-21T19:03:39.287+0900 I JOURNAL  [initandlisten] journal dir=/data/db/journal
+2015-11-21T19:03:39.287+0900 I JOURNAL  [initandlisten] recover : no journal files present, no recovery needed
+2015-11-21T19:03:39.300+0900 I JOURNAL  [durability] Durability thread started
+2015-11-21T19:03:39.300+0900 I CONTROL  [initandlisten] MongoDB starting : pid=16608 port=27017 dbpath=/data/db 64-bit host=nakajimas-MacBook-Pro.local
+2015-11-21T19:03:39.300+0900 I CONTROL  [initandlisten] db version v3.0.6
+2015-11-21T19:03:39.301+0900 I CONTROL  [initandlisten] git version: nogitversion
+2015-11-21T19:03:39.301+0900 I CONTROL  [initandlisten] build info: Darwin yosemitevm.local 14.5.0 Darwin Kernel Version 14.5.0: Wed Jul 29 02:26:53 PDT 2015; root:xnu-2782.40.9~1/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+2015-11-21T19:03:39.301+0900 I JOURNAL  [journal writer] Journal writer thread started
+2015-11-21T19:03:39.301+0900 I CONTROL  [initandlisten] allocator: system
+2015-11-21T19:03:39.301+0900 I CONTROL  [initandlisten] options: { systemLog: { destination: "file", path: "proxy-mongodb/mongodb/mongodb.log" } }
+2015-11-21T19:03:39.341+0900 I NETWORK  [initandlisten] waiting for connections on port 27017
+2015-11-21T19:03:40.231+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57547 #1 (1 connection now open)
+2015-11-21T19:03:40.232+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57548 #2 (2 connections now open)
+2015-11-21T19:03:40.232+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57549 #3 (3 connections now open)
+2015-11-21T19:03:40.233+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57550 #4 (4 connections now open)
+2015-11-21T19:03:40.233+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57551 #5 (5 connections now open)
+2015-11-21T19:03:40.233+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57552 #6 (6 connections now open)
+2015-11-21T19:03:40.241+0900 I NETWORK  [conn2] end connection 127.0.0.1:57548 (5 connections now open)
+2015-11-21T19:03:40.254+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57553 #7 (6 connections now open)
+2015-11-21T19:03:40.255+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57554 #8 (7 connections now open)
+2015-11-21T19:03:40.256+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57555 #9 (8 connections now open)
+2015-11-21T19:03:40.257+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57556 #10 (9 connections now open)
+2015-11-21T19:03:40.257+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57557 #11 (10 connections now open)
+2015-11-21T19:16:33.903+0900 I CONTROL  [signalProcessingThread] got signal 2 (Interrupt: 2), will terminate after current cmd ends
+2015-11-21T19:16:33.903+0900 I CONTROL  [signalProcessingThread] now exiting
+2015-11-21T19:16:33.903+0900 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+2015-11-21T19:16:33.903+0900 I NETWORK  [signalProcessingThread] closing listening socket: 6
+2015-11-21T19:16:33.903+0900 I NETWORK  [signalProcessingThread] closing listening socket: 7
+2015-11-21T19:16:33.903+0900 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+2015-11-21T19:16:33.903+0900 I NETWORK  [signalProcessingThread] shutdown: going to flush diaglog...
+2015-11-21T19:16:33.903+0900 I NETWORK  [signalProcessingThread] shutdown: going to close sockets...
+2015-11-21T19:16:33.903+0900 I STORAGE  [signalProcessingThread] shutdown: waiting for fs preallocator...
+2015-11-21T19:16:33.903+0900 I STORAGE  [signalProcessingThread] shutdown: final commit...
+2015-11-21T19:16:33.903+0900 I NETWORK  [conn3] end connection 127.0.0.1:57549 (9 connections now open)
+2015-11-21T19:16:33.907+0900 I NETWORK  [conn8] end connection 127.0.0.1:57554 (9 connections now open)
+2015-11-21T19:16:33.909+0900 I NETWORK  [conn7] end connection 127.0.0.1:57553 (9 connections now open)
+2015-11-21T19:16:33.909+0900 I NETWORK  [conn9] end connection 127.0.0.1:57555 (9 connections now open)
+2015-11-21T19:16:33.909+0900 I NETWORK  [conn10] end connection 127.0.0.1:57556 (9 connections now open)
+2015-11-21T19:16:33.909+0900 I NETWORK  [conn11] end connection 127.0.0.1:57557 (9 connections now open)
+2015-11-21T19:16:33.910+0900 I NETWORK  [conn1] end connection 127.0.0.1:57547 (9 connections now open)
+2015-11-21T19:16:33.911+0900 I NETWORK  [conn4] end connection 127.0.0.1:57550 (9 connections now open)
+2015-11-21T19:16:33.911+0900 I NETWORK  [conn5] end connection 127.0.0.1:57551 (9 connections now open)
+2015-11-21T19:16:33.911+0900 I NETWORK  [conn6] end connection 127.0.0.1:57552 (9 connections now open)
+2015-11-21T19:16:33.912+0900 I JOURNAL  [signalProcessingThread] journalCleanup...
+2015-11-21T19:16:33.912+0900 I JOURNAL  [signalProcessingThread] removeJournalFiles
+2015-11-21T19:16:33.912+0900 I JOURNAL  [signalProcessingThread] Terminating durability thread ...
+2015-11-21T19:16:34.007+0900 I JOURNAL  [journal writer] Journal writer thread stopped
+2015-11-21T19:16:34.007+0900 I JOURNAL  [durability] Durability thread stopped
+2015-11-21T19:16:34.007+0900 I STORAGE  [signalProcessingThread] shutdown: closing all files...
+2015-11-21T19:16:34.008+0900 I STORAGE  [signalProcessingThread] closeAllFiles() finished
+2015-11-21T19:16:34.008+0900 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+2015-11-21T19:16:34.008+0900 I CONTROL  [signalProcessingThread] dbexit:  rc: 0

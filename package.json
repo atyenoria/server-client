@@ -4,17 +4,18 @@
   "description": "A new Webpack boilerplate with hot reloading React components, and error handling on module and component level.",
   "scripts": {
     "clean": "rimraf dist",
-    "start": "concurrent --kill-others \"npm run start-client\" \"npm run start-server\" \"npm run start-proxy\"",
-    "start-client": "node ./node_modules/better-npm-run start-client",
-    "start-server": "nodemon --watch 'server/**/*' ./node_modules/better-npm-run start-server",
-    "start-proxy": "nodemon --watch 'proxy.js' ./node_modules/better-npm-run start-proxy",
+    "start": "concurrent --kill-others \"npm run start-client\" \"npm run start-server\" \"npm run start-proxy\" \"npm run start-mongodb\"",
+    "start-client": "nodemon --watch 'clientdev.js' --watch 'webpack.config.dev.js'  ./node_modules/better-npm-run start-client",
+    "start-server": "sleep 0.3 &&nodemon --watch 'server/**/*' ./node_modules/better-npm-run start-server",
+    "start-proxy": "nodemon --watch 'proxy/proxy.js' ./node_modules/better-npm-run start-proxy",
+    "start-mongodb": "node ./node_modules/better-npm-run start-mongodb",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "lint": "eslint src"
   },
   "betterScripts": {
     "start-client": {
-      "command": "node devserver.js",
+      "command": "node clientdev.js",
       "env": {
         "NODE_ENV": "development"
       }
@@ -25,12 +26,18 @@
         "NODE_ENV": "development"
       }
     },
-     "start-proxy": {
-    "command": "node proxy.js",
-    "env": {
-      "NODE_ENV": "development"
+    "start-proxy": {
+      "command": "node proxy-mongodb/proxy.js",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "start-mongodb": {
+      "command": "mongod --logpath proxy-mongodb/mongodb/mongodb.log",
+      "env": {
+        "NODE_ENV": "development"
+      }
     }
-  }
   },
   "repository": {
     "type": "git",
@@ -79,6 +86,7 @@
     "bcrypt-nodejs": "0.0.3",
     "better-npm-run": "0.0.4",
     "body-parser": "^1.14.1",
+    "colors": "^1.1.2",
     "concurrently": "^1.0.0",
     "connect-mongo": "^0.8.2",
     "cors": "^2.7.1",

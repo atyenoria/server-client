@@ -6,7 +6,6 @@ import SignUp from '../components/SignUp';
 import WelcomePage from '../components/WelcomePage';
 import configureStore from '../store/configureStore';
 import ChatContainer from './ChatContainer';
-import ChatCContainer from './ChatCContainer';
 import Test from '../components/Test';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 const store = configureStore();
@@ -28,7 +27,6 @@ export default class Root extends Component {
              <Redirect from="/_=_" to="/chat" />
             <Route path="/welcome" component={WelcomePage} />
             <Route path="/chat" component={ChatContainer} />
-            <Route path="/chatc" component={ChatCContainer} />
             <Route path="/test" component={Test} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />

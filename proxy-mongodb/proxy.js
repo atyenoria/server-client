@@ -126,6 +126,7 @@ server.on('error', function(err, req, res) {
 //     webSocketProxy.ws( req, socket, head );
 // });
 
-server.listen(3000);
-console.log('It Works!');
+process.env.PORT = 3000;
+server.listen(process.env.PORT);
+console.log('**************************** Proxy on port: %s ****************************', process.env.PORT);
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
 import FBSignIn from './FBSignIn';
 import strftime from 'strftime';
-const socket = io.connect('client.devtest.com:3000');
+// const socket = io.connect('server.devtest.com:3000');
 
 
 @connect()

@@ -27,11 +27,12 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(3001, 'localhost', function(err) {
+app.listen(process.env.PORT, 'localhost', function(err) {
   if (err) {
     console.log(err);
     return;
   }
 
-  console.log('Client Side Listening at http://localhost:3001');
+console.log('**************************** ClientDev on port: %s ****************************', process.env.PORT);
 });
+
