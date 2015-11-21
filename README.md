@@ -7,7 +7,7 @@ User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:44.0) Gecko/2010010
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
 Accept-Language: en-US,en;q=0.5
 Accept-Encoding: gzip, deflate
-Cookie: connect.sid=s%3AgEHrjTCJyUc33dX54MAj3uyuHc_X2uda.huH9Cey%2FlRdZNvcrrInxeql8eRl0ECZ7Z0ALHaFE0pg
+<!-- Cookie: connect.sid=s%3AgEHrjTCJyUc33dX54MAj3uyuHc_X2uda.huH9Cey%2FlRdZNvcrrInxeql8eRl0ECZ7Z0ALHaFE0pg -->
 Connection: keep-alive
 If-None-Match: W/"41f-ZAwfJMrXlRcmkPyde5IhmQ"
 Cache-Control: max-age=0

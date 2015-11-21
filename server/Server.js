@@ -4,13 +4,23 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var http = require('http').Server(app);
+
 var mongoose = require('mongoose');
 var session = require('express-session');
 var cors = require('cors');
-var webpack = require('webpack');
-var config = require('../webpack.config.dev');
+// var webpack = require('webpack');
+// var config = require('../webpack.config.dev');
+
+
+// var app = express();
+//
+
+// attach socket.io onto our development server
+
+
+
 var app = express();
-var compiler = webpack(config);
+// var compiler = webpack(config);
 
 var passport = require('passport');
 require('./passport/passport')(passport);
@@ -20,23 +30,23 @@ var MongoStore = require('connect-mongo')(session);
 var User = require('./models/User');
 //set env vars
 process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/chat_dev';
-process.env.PORT = 3000;
+process.env.PORT = 3002;
 
 
 // connect our DB
 mongoose.connect(process.env.MONGOLAB_URI);
 // Basic usage
 
-// app.use(session({
-//   secret: 'keyboard kitty',
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: { maxAge: 600000000 }
-// }));
+app.use(session({
+  secret: 'keyboard kitty',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 600000000 }
+}));
 
 app.use(session({
     secret: 'secret',
-    store: new MongoStore({ url: 'mongodb://localhost/test-app' }),
+    store: new MongoStore({ url: 'mongodb://localhost/sample' }),
     cookie: {
         httpOnly: false,
         maxAge: new Date(Date.now() + 60 * 60 * 1000)
@@ -51,11 +61,11 @@ process.on('uncaughtException', function (err) {
   console.log(err);
 });
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
-}));
-app.use(require('webpack-hot-middleware')(compiler));
+// app.use(require('webpack-dev-middleware')(compiler, {
+  // noInfo: true,
+  // publicPath: config.output.publicPath
+// }));
+// app.use(require('webpack-hot-middleware')(compiler));
 
 app.use(cors());
 
@@ -79,7 +89,8 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-var webpackServer = app.listen(process.env.PORT, 'localhost', function(err) {
+
+var server = app.listen(process.env.PORT, 'localhost', function(err) {
   if (err) {
     console.log(err);
     return;
@@ -87,6 +98,7 @@ var webpackServer = app.listen(process.env.PORT, 'localhost', function(err) {
   console.log('server listening on port: %s', process.env.PORT);
 });
 
-// attach socket.io onto our development server
-var io = require('socket.io')(webpackServer);
+
+
+var io = require('socket.io')(server);
 var socketEvents = require('./socketEvents')(io);
