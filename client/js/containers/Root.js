@@ -11,6 +11,7 @@ import Test from '../components/Test';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 const store = configureStore();
 import DiffMonitor from 'redux-devtools-diff-monitor';
+import {TestMonitor} from 'redux-devtools-gentest-plugin';
 
 export default class Root extends Component {
   static propTypes = {
@@ -40,3 +41,4 @@ export default class Root extends Component {
     );
   }
 }
+

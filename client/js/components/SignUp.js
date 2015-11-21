@@ -56,7 +56,7 @@ export default class SignUp extends Component {
       const userObj = {
         username: this.state.username,
         password: this.state.password,
-        socketio: socket.io.engine.id,
+        socketid: socket.io.engine.id,
         confirmPassword: this.state.confirmPassword
       };
       dispatch(Actions.signUp(userObj)).then(() => {

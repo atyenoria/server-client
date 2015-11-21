@@ -16,39 +16,88 @@ module.exports = function loadUserRoutes(router, passport) {
   }));
 
   router.post('/sign_up', passport.authenticate('local-signup'), function(req, res) {
-    console.log(req)
+    console.log(req.body);
     res.json(req.user);
-
   });
+
 
   router.post('/sign_in', passport.authenticate('local-login'), function(req, res) {
-
-    User.find({username: req.body.username}, function(err, data) {
-      if (err) {
-      console.log(err)
-        return res.status(500).json({msg: 'error validating username'})
-      }
-      if (data.length > 0) {
-      console.log("ok")
-      } else {
-      console.log("ok")
-      }
-    }).limit(1)
+    console.log(req.body);
     res.json(req.user);
-
   });
 
+
   router.get('/signout', function(req, res) {
+
     req.logout();
     res.end();
   });
 
   //get auth credentials from server
-  router.get('/load_auth_into_state', function(req, res) {
+  router.post('/load_auth_into_state', function(req, res) {
 
+    console.log("+++++++++++++load_auth_into_state+++++++++++++")
+    console.log(req.body);
+    // console.log(req.body);
+    // console.log(req.user);
 
-    console.log(req.session);
     res.json(req.user);
+    console.log(req.user.local.username)
+
+     // User.findOneAndUpdate({ 'local.username': req.user.local.username}, function(err, user) {
+     //  if (err) {
+     //    console.log("find one error")
+     //  }
+     //  if (!user) {
+     //    console.log("no user error")
+
+     //  }
+     //  // if (!user.validPassword(password)) {
+     //  //   return done(null, false)
+     //  // }
+     //  console.log(req.body)
+     //  console.log("find user")
+     //  user.local.socketid = req.body.socketid
+     //  user.local.password = "asdfa"
+     //  user.save(function(err) {
+     //    if (err) { console.log(err);console.log("save error") }
+     //    console.log(user);
+     //    console.log("user find error")
+
+     //  });
+
+
+   User.findOne({ 'local.username': req.user.local.username}, function(err, user) {
+
+      console.log(req.body)
+
+      if (err) {
+        console.log("tura!")
+      }
+      if (user) {
+       console.log("tubr!")
+      } else {
+        var newUser = new User();
+        newUser.local.username = "username";
+        newUser.local.password = "newUser.generateHash(password);"
+        newUser.local.socketid = "req.body.socketid;"
+
+        newUser.save(function(err, user) {
+          if (err) {
+            throw err;
+          }
+          console.log("turc!")
+        });
+      }
+
+
+
+  })
+
+
+
+
+    console.log("+++++++++++++load_auth_into_state+++++++++++++")
 
 
 

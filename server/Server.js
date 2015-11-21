@@ -8,16 +8,16 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var cors = require('cors');
 var webpack = require('webpack');
-var config = require('./webpack.config.dev');
+var config = require('../webpack.config.dev');
 var app = express();
 var compiler = webpack(config);
 
 var passport = require('passport');
-require('./config/passport')(passport);
+require('./passport/passport')(passport);
 
 var MongoStore = require('connect-mongo')(session);
 
-var User = require('./server/models/User');
+var User = require('./models/User');
 //set env vars
 process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/chat_dev';
 process.env.PORT = 3000;
@@ -67,16 +67,16 @@ app.use(passport.session());
 var messageRouter = express.Router();
 var usersRouter = express.Router();
 var channelRouter = express.Router();
-require('./server/routes/message_routes')(messageRouter);
-require('./server/routes/channel_routes')(channelRouter);
-require('./server/routes/user_routes')(usersRouter, passport);
+require('./routes/message_routes')(messageRouter);
+require('./routes/channel_routes')(channelRouter);
+require('./routes/user_routes')(usersRouter, passport);
 // require('./server/routes/user_routes')(usersRouter)
 app.use('/api', messageRouter);
 app.use('/api', usersRouter);
 app.use('/api', channelRouter);
 app.get('*', function(req, res) {
   // console.log(req)
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 var webpackServer = app.listen(process.env.PORT, 'localhost', function(err) {
@@ -89,4 +89,4 @@ var webpackServer = app.listen(process.env.PORT, 'localhost', function(err) {
 
 // attach socket.io onto our development server
 var io = require('socket.io')(webpackServer);
-var socketEvents = require('./server/socketEvents')(io);
+var socketEvents = require('./socketEvents')(io);

@@ -32,7 +32,7 @@ export default class WelcomePage extends Component {
                 time: "12:30"}],
       text: '',
       typing: false
-    };
+    };l
   }
 
 

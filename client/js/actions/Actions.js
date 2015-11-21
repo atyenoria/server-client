@@ -55,10 +55,10 @@ export function changeChannel(channel) {
 
 // NOTE:Auth actions
 
-export function loadAuth() {
+export function loadAuth(user) {
   return {
     types: [types.AUTH_LOAD, types.AUTH_LOAD_SUCCESS, types.AUTH_LOAD_FAIL],
-    promise: UserAPIUtils.loadAuth()
+    promise: UserAPIUtils.loadAuth(user)
   };
 }
 
@@ -155,3 +155,4 @@ export function fetchMessagesIfNeeded() {
     }
   }
 }
+

@@ -11,9 +11,8 @@ import { DropdownButton, MenuItem } from 'react-bootstrap';
 export default class Chat extends Component {
 
 
-
   static propTypes = {
-    messages: PropTypes.array.isRequired,
+    dispatch: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -24,6 +23,7 @@ export default class Chat extends Component {
   static contextTypes = {
     router: PropTypes.object.isRequired
   }
+
   componentDidMount() {
     const { actions } = this.props;
     socket.on('new bc message', msg =>
@@ -38,9 +38,22 @@ export default class Chat extends Component {
     socket.on('new channel', channel =>
       actions.receiveRawChannel(channel)
     );
-    if (!this.props.user.username) {
-      actions.loadAuth();
-    }
+
+    socket.on('test', () => {
+    var socketid = {socketid: socket.io.engine.id}
+    actions.loadAuth(socketid)
+    });
+    // var userObj = {socketid: socket.io.engine.id};
+    // console.log(message);
+
+
+
+    // console.log(socket.io.engine.id)
+
+    // if (!this.props.user.username) {
+    //   actions.loadAuth();
+    // }
+
   }
   componentDidUpdate() {
     const messageList = this.refs.messageList;

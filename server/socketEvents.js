@@ -18,6 +18,7 @@ exports = module.exports = function(io) {
     // for (var clientId in clients) {
     // console.log(io.sockets.connected[clientId]);
     // }
+    socket.emit('test',{test: "server ok"})
 
     socket.on('new message', function(msg) {
       socket.to('room2').emit('new bc message', msg);

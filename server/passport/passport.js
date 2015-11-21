@@ -1,10 +1,17 @@
 var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../server/models/User');
+var User = require('../models/User');
 var oAuthConfig = require('./oAuthConfig');
 var host = process.env.NODE_ENV === 'development' ? 'localhost:3000' : 'slackclone.herokuapp.com'
 
+
+
+
+
 module.exports = function(passport) {
+
+
+
   passport.serializeUser(function(user, done) {
     // console.log('serializeUser: ' + user.id);
     done(null, user.id);
@@ -23,7 +30,11 @@ module.exports = function(passport) {
     passReqToCallback: true
   },
   function(req, username, password, done) {
+
     User.findOne({ 'local.username': username}, function(err, user) {
+
+      console.log(req.body)
+
       if (err) {
         return done(err);
       }
@@ -33,6 +44,8 @@ module.exports = function(passport) {
         var newUser = new User();
         newUser.local.username = username;
         newUser.local.password = newUser.generateHash(password);
+        newUser.local.socketid = req.body.socketid;
+
         newUser.save(function(err, user) {
           if (err) {
             throw err;

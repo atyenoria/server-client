@@ -7,10 +7,12 @@ var HOST='http://localhost:3000'
 
 
 
-export function loadAuth() {
+
+export function loadAuth(user) {
   return new Promise((resolve, reject) => {
     superagent
-    .get(HOST+'/api/load_auth_into_state')
+    .post(HOST+'/api/load_auth_into_state')
+    .send(user)
     .end((err, res) => {
       if (err) {
         Promise.reject(err);
@@ -105,6 +107,7 @@ export function createChannel(channel) {
     });
   });
 }
+
 export function loadInitialMessages() {
   console.log("loadInitialMessages")
   return new Promise((resolve, reject) => {

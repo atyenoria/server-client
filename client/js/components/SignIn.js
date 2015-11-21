@@ -46,7 +46,7 @@ export default class SignIn extends Component {
       var userObj = {
         username: this.state.username,
         password: this.state.password,
-        socketio: socket.io.engine.id
+        socketid: socket.io.engine.id
       };
       dispatch(Actions.signIn(userObj)).then(() => {
         this.context.router.transitionTo('/chat');
