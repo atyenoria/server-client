@@ -49,7 +49,7 @@ export default class WelcomePage extends Component {
     socket.on('test', msg =>
     console.log(msg)
     )
-
+    console.log(socket)
 
   }
 

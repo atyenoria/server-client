@@ -5,10 +5,12 @@ var path = require('path');
 var app = express();
 var http = require('http').Server(app);
 
+var mongoose = require('gulp-img2uri');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var cors = require('cors');
 var app = express();
+var q = require('q');
 
 var passport = require('passport');
 require('./passport/passport')(passport);
@@ -19,6 +21,7 @@ var User = require('./models/User');
 process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/chat_dev';
 process.env.PORT = 3000;
 mongoose.connect(process.env.MONGOLAB_URI);
+
 
 
 
@@ -65,7 +68,6 @@ var proxy = require('express-http-proxy');
 
 
 
-
 var server = app.listen(process.env.PORT, 'localhost', function(err) {
   if (err) {
     console.log(err);
@@ -75,6 +77,12 @@ var server = app.listen(process.env.PORT, 'localhost', function(err) {
 });
 
 
-
+var REDIS_HOST="localhost"
+var REDIS_PORT="6379"
 var io = require('socket.io')(server);
+var redis = require('redis').createClient;
+var adapter = require('socket.io-redis');
+var pub = redis(REDIS_PORT, REDIS_HOST);
+var sub = redis(REDIS_PORT, REDIS_HOST);
+io.adapter(adapter({ pubClient: pub, subClient: sub }));
 var socketEvents = require('./socketEvents')(io);

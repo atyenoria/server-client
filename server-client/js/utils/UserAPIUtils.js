@@ -1,11 +1,8 @@
 import superagent from 'superagent';
 import superagent_chache from 'superagent-cache'
-
+import { API_SERVER } from '../constants/etc.js';
 // var superagent = superagent_chache()
 
-var HOST='http://localhost:3000'
-
-// var HOST='localhost:3002'
 
 
 
@@ -15,7 +12,7 @@ export function loadAuth(user) {
   return new Promise((resolve, reject) => {
 
     superagent
-    .post(HOST+'/api/load_auth_into_state')
+    .post(API_SERVER+'/api/load_auth_into_state')
     .send(user)
     .end((err, res) => {
       if (err) {
@@ -29,7 +26,7 @@ export function loadAuth(user) {
 export function signUp(user) {
   return new Promise((resolve, reject) => {
     superagent
-    .post(HOST+'/api/sign_up')
+    .post(API_SERVER+'/api/sign_up')
     .send(user)
     .end((err, res) => {
       if (err) {
@@ -43,7 +40,7 @@ export function signUp(user) {
 export function signIn(user) {
   return new Promise((resolve, reject) => {
     superagent
-    .post(HOST+'/api/sign_in')
+    .post(API_SERVER+'/api/sign_in')
     .send(user)
     .end((err, res) => {
       if (err) {
@@ -57,7 +54,7 @@ export function signIn(user) {
 export function signOut() {
   return new Promise((resolve, reject) => {
     superagent
-    .get(HOST+'/api/signout')
+    .get(API_SERVER+'/api/signout')
     .end((err) => {
       if (err) {
         reject(err);
@@ -73,7 +70,7 @@ export function signOut() {
 export function usernameValidationList() {
   return new Promise((resolve, reject) => {
     superagent
-    .get(HOST+'/api/allusers')
+    .get(API_SERVER+'/api/allusers')
     .end((err, res) => {
       if (err) {
         reject(res.body || err);
@@ -87,7 +84,7 @@ export function usernameValidationList() {
 export function createMessage(message) {
   return new Promise((resolve, reject) => {
     superagent
-    .post(HOST+'/api/newmessage')
+    .post(API_SERVER+'/api/newmessage')
     .send(message)
     .end((err, res) => {
       if (err) {
@@ -101,7 +98,7 @@ export function createMessage(message) {
 export function createChannel(channel) {
   return new Promise((resolve, reject) => {
     superagent
-    .post(HOST+'/api/channels/new_channel')
+    .post(API_SERVER+'/api/channels/new_channel')
     .send(channel)
     .end((err, res) => {
       if (err) {
@@ -117,7 +114,7 @@ export function loadInitialMessages() {
   console.log("loadInitialMessages")
   return new Promise((resolve, reject) => {
     superagent
-    .get(HOST+'/api/messages')
+    .get(API_SERVER+'/api/messages')
     .end((err, res) => {
       if (err) {
         reject(res.body || err);
@@ -131,7 +128,7 @@ export function loadInitialMessages() {
 export function loadInitialChannels() {
   return new Promise((resolve, reject) => {
     superagent
-    .get(HOST+'/api/channels')
+    .get(API_SERVER+'/api/channels')
     .end((err, res) => {
       if (err) {
         reject(res.body || err);
@@ -149,7 +146,7 @@ export function loadInitialChannels() {
 export function gettest() {
   return new Promise((resolve, reject) => {
     superagent
-    .get(HOST+'/')
+    .get(API_SERVER+'/')
     .end((err) => {
       if (err) {
         reject(err);

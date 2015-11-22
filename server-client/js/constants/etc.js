@@ -1,1 +1,2 @@
-export const SOCKET_SERVER = 'server.devtest.com:3000';
+export const SOCKET_SERVER = 'localhost:3000';
+export const API_SERVER = 'http://localhost:3000';

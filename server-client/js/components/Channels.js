@@ -2,8 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import ChannelListItem from './ChannelListItem';
 import ChannelListModalItem from './ChannelListModalItem';
 import { Modal, Glyphicon, Input, Button } from 'react-bootstrap';
-const socket = io.connect('server.devtest.com:3000');
-// const socket = io.connect('http://localhost:3001', {reconnect: true});
+
+import { SOCKET_SERVER } from '../constants/etc.js';
+const socket = io.connect(SOCKET_SERVER);
+
 import * as UserAPIUtils from '../utils/UserAPIUtils';
 
 export default class Channels extends Component {

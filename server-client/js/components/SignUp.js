@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/Actions';
 import { Input, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
-const socket = io.connect('localhost:3000');
+
+import { SOCKET_SERVER } from '../constants/etc.js';
+const socket = io.connect(SOCKET_SERVER);
 
 @connect(state => ({
   welcomePage: state.welcomePage,

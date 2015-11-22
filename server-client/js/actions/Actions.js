@@ -1,8 +1,8 @@
 import * as types from '../constants/ActionTypes';
 import * as UserAPIUtils from '../utils/UserAPIUtils';
 import fetch from 'isomorphic-fetch';
+import { API_SERVER } from '../constants/etc.js';
 
-var HOST='http://localhost:3000'
 
 
 export function addMessage(message) {
@@ -129,7 +129,7 @@ function requestMessages() {
 export function fetchMessages() {
   return dispatch => {
     dispatch(requestMessages())
-    return fetch(HOST+'/api/messages')
+    return fetch(API_SERVER+'/api/messages')
       .then(response => response.json())
       .then(json => dispatch(receiveMessages(json)))
   }

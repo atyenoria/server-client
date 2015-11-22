@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import * as UserAPIUtils from '../utils/UserAPIUtils';
-const socket = io.connect('localhost:3000');
-// const socket = io.connect('http://localhost:3001', {reconnect: true});
+
+import { SOCKET_SERVER } from '../constants/etc.js';
+const socket = io.connect(SOCKET_SERVER);
+
 import strftime from 'strftime';
 import { Input } from 'react-bootstrap';
 
