@@ -26,6 +26,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
   hot: true,
   headers: { 'Access-Control-Allow-Origin': '*' }
 }));
+
 app.use(require('webpack-hot-middleware')(compiler));
 
 

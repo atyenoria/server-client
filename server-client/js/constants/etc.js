@@ -1,0 +1,1 @@
+export const SOCKET_SERVER = 'server.devtest.com:3000';

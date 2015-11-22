@@ -4,7 +4,7 @@
   "description": "A new Webpack boilerplate with hot reloading React components, and error handling on module and component level.",
   "scripts": {
     "clean": "rimraf dist",
-    "start": "concurrent --kill-others \"npm run start-client\" \"npm run start-server\" \"npm run start-proxy\" \"npm run start-mongodb\"",
+    "start": "concurrent --kill-others \"npm run start-client\" \"npm run start-server\" \"npm run start-mongodb\"",
     "start-client": "nodemon --watch 'clientdev.js' --watch 'webpack.config.dev.js'  ./node_modules/better-npm-run start-client",
     "start-server": "sleep 0.3 &&nodemon --watch 'server/**/*' ./node_modules/better-npm-run start-server",
     "start-proxy": "nodemon --watch 'proxy-mongodb/proxy.js' ./node_modules/better-npm-run start-proxy",
@@ -33,7 +33,7 @@
       }
     },
     "start-mongodb": {
-      "command": "mongod --logpath proxy-mongodb/mongodb/mongodb.log",
+      "command": "mongod --logpath .etc/proxy-mongodb/mongodb/mongodb.log",
       "env": {
         "NODE_ENV": "development"
       }

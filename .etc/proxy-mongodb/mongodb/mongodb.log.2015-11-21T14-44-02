@@ -1,0 +1,69 @@
+2015-11-21T23:43:30.445+0900 I JOURNAL  [initandlisten] journal dir=/data/db/journal
+2015-11-21T23:43:30.445+0900 I JOURNAL  [initandlisten] recover : no journal files present, no recovery needed
+2015-11-21T23:43:30.455+0900 I JOURNAL  [durability] Durability thread started
+2015-11-21T23:43:30.455+0900 I CONTROL  [initandlisten] MongoDB starting : pid=35717 port=27017 dbpath=/data/db 64-bit host=nakajimas-MacBook-Pro.local
+2015-11-21T23:43:30.455+0900 I CONTROL  [initandlisten] db version v3.0.6
+2015-11-21T23:43:30.455+0900 I CONTROL  [initandlisten] git version: nogitversion
+2015-11-21T23:43:30.455+0900 I CONTROL  [initandlisten] build info: Darwin yosemitevm.local 14.5.0 Darwin Kernel Version 14.5.0: Wed Jul 29 02:26:53 PDT 2015; root:xnu-2782.40.9~1/RELEASE_X86_64 x86_64 BOOST_LIB_VERSION=1_49
+2015-11-21T23:43:30.455+0900 I CONTROL  [initandlisten] allocator: system
+2015-11-21T23:43:30.455+0900 I CONTROL  [initandlisten] options: { systemLog: { destination: "file", path: ".etc/proxy-mongodb/mongodb/mongodb.log" } }
+2015-11-21T23:43:30.455+0900 I JOURNAL  [journal writer] Journal writer thread started
+2015-11-21T23:43:30.463+0900 I NETWORK  [initandlisten] waiting for connections on port 27017
+2015-11-21T23:43:31.434+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57685 #1 (1 connection now open)
+2015-11-21T23:43:31.434+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57686 #2 (2 connections now open)
+2015-11-21T23:43:31.434+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57687 #3 (3 connections now open)
+2015-11-21T23:43:31.434+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57688 #4 (4 connections now open)
+2015-11-21T23:43:31.434+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57689 #5 (5 connections now open)
+2015-11-21T23:43:31.434+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57690 #6 (6 connections now open)
+2015-11-21T23:43:31.442+0900 I NETWORK  [conn2] end connection 127.0.0.1:57686 (5 connections now open)
+2015-11-21T23:43:31.451+0900 I INDEX    [conn5] allocating new ns file /data/db/chat_dev.ns, filling with zeroes...
+2015-11-21T23:43:31.452+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57691 #7 (6 connections now open)
+2015-11-21T23:43:31.453+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57692 #8 (7 connections now open)
+2015-11-21T23:43:31.453+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57693 #9 (8 connections now open)
+2015-11-21T23:43:31.453+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57694 #10 (9 connections now open)
+2015-11-21T23:43:31.453+0900 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:57695 #11 (10 connections now open)
+2015-11-21T23:43:31.455+0900 I INDEX    [conn9] allocating new ns file /data/db/sample.ns, filling with zeroes...
+2015-11-21T23:43:31.539+0900 I STORAGE  [FileAllocator] allocating new datafile /data/db/chat_dev.0, filling with zeroes...
+2015-11-21T23:43:31.539+0900 I STORAGE  [FileAllocator] creating directory /data/db/_tmp
+2015-11-21T23:43:31.683+0900 I STORAGE  [FileAllocator] done allocating datafile /data/db/chat_dev.0, size: 64MB,  took 0.143 secs
+2015-11-21T23:43:31.683+0900 I STORAGE  [FileAllocator] allocating new datafile /data/db/sample.0, filling with zeroes...
+2015-11-21T23:43:31.798+0900 I STORAGE  [FileAllocator] done allocating datafile /data/db/sample.0, size: 64MB,  took 0.114 secs
+2015-11-21T23:43:31.827+0900 I INDEX    [conn9] build index on: sample.sessions properties: { v: 1, key: { expires: 1 }, name: "expires_1", ns: "sample.sessions", expireAfterSeconds: 0 }
+2015-11-21T23:43:31.827+0900 I INDEX    [conn9] 	 building index using bulk method
+2015-11-21T23:43:31.827+0900 I INDEX    [conn9] build index done.  scanned 0 total records. 0 secs
+2015-11-21T23:43:31.827+0900 I COMMAND  [conn9] command sample.$cmd command: createIndexes { createIndexes: "sessions", indexes: [ { name: "expires_1", key: { expires: 1 }, expireAfterSeconds: 0 } ] } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, MMAPV1Journal: { acquireCount: { w: 9 }, acquireWaitCount: { w: 1 }, timeAcquiringMicros: { w: 51 } }, Database: { acquireCount: { W: 1 } }, Collection: { acquireCount: { W: 1 } }, Metadata: { acquireCount: { W: 5 } } } 372ms
+2015-11-21T23:43:31.827+0900 I INDEX    [conn5] build index on: chat_dev.users properties: { v: 1, unique: true, key: { local.username: 1 }, name: "local.username_1", ns: "chat_dev.users", background: true }
+2015-11-21T23:43:31.828+0900 I INDEX    [conn6] build index on: chat_dev.channels properties: { v: 1, unique: true, key: { name: 1 }, name: "name_1", ns: "chat_dev.channels", background: true }
+2015-11-21T23:43:31.828+0900 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+2015-11-21T23:43:31.828+0900 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+2015-11-21T23:43:31.828+0900 I COMMAND  [conn6] command chat_dev.$cmd command: createIndexes { createIndexes: "channels", indexes: [ { name: "name_1", key: { name: 1 }, unique: true, background: true } ], writeConcern: { w: 1 } } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, MMAPV1Journal: { acquireCount: { w: 6 } }, Database: { acquireCount: { w: 1, W: 2 }, acquireWaitCount: { W: 2 }, timeAcquiringMicros: { W: 376024 } }, Collection: { acquireCount: { W: 1 } }, Metadata: { acquireCount: { W: 3 } } } 377ms
+2015-11-21T23:43:31.828+0900 I COMMAND  [conn5] command chat_dev.$cmd command: createIndexes { createIndexes: "users", indexes: [ { name: "local.username_1", key: { local.username: 1 }, unique: true, background: true } ], writeConcern: { w: 1 } } keyUpdates:0 writeConflicts:0 numYields:0 reslen:113 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, MMAPV1Journal: { acquireCount: { w: 10 }, acquireWaitCount: { w: 1 }, timeAcquiringMicros: { w: 113861 } }, Database: { acquireCount: { w: 1, W: 2 }, acquireWaitCount: { w: 1, W: 1 }, timeAcquiringMicros: { w: 1018, W: 22 } }, Collection: { acquireCount: { W: 1 } }, Metadata: { acquireCount: { W: 5 } } } 377ms
+2015-11-21T23:44:01.361+0900 I CONTROL  [signalProcessingThread] got signal 2 (Interrupt: 2), will terminate after current cmd ends
+2015-11-21T23:44:01.361+0900 I CONTROL  [signalProcessingThread] now exiting
+2015-11-21T23:44:01.361+0900 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+2015-11-21T23:44:01.361+0900 I NETWORK  [signalProcessingThread] closing listening socket: 6
+2015-11-21T23:44:01.361+0900 I NETWORK  [signalProcessingThread] closing listening socket: 7
+2015-11-21T23:44:01.361+0900 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+2015-11-21T23:44:01.361+0900 I NETWORK  [signalProcessingThread] shutdown: going to flush diaglog...
+2015-11-21T23:44:01.361+0900 I NETWORK  [signalProcessingThread] shutdown: going to close sockets...
+2015-11-21T23:44:01.362+0900 I STORAGE  [signalProcessingThread] shutdown: waiting for fs preallocator...
+2015-11-21T23:44:01.362+0900 I STORAGE  [signalProcessingThread] shutdown: final commit...
+2015-11-21T23:44:01.362+0900 I NETWORK  [conn1] end connection 127.0.0.1:57685 (9 connections now open)
+2015-11-21T23:44:01.362+0900 I NETWORK  [conn6] end connection 127.0.0.1:57690 (9 connections now open)
+2015-11-21T23:44:01.366+0900 I NETWORK  [conn3] end connection 127.0.0.1:57687 (9 connections now open)
+2015-11-21T23:44:01.366+0900 I NETWORK  [conn4] end connection 127.0.0.1:57688 (9 connections now open)
+2015-11-21T23:44:01.366+0900 I NETWORK  [conn5] end connection 127.0.0.1:57689 (9 connections now open)
+2015-11-21T23:44:01.366+0900 I NETWORK  [conn7] end connection 127.0.0.1:57691 (9 connections now open)
+2015-11-21T23:44:01.366+0900 I NETWORK  [conn9] end connection 127.0.0.1:57693 (9 connections now open)
+2015-11-21T23:44:01.366+0900 I NETWORK  [conn11] end connection 127.0.0.1:57695 (9 connections now open)
+2015-11-21T23:44:01.366+0900 I NETWORK  [conn8] end connection 127.0.0.1:57692 (9 connections now open)
+2015-11-21T23:44:01.366+0900 I NETWORK  [conn10] end connection 127.0.0.1:57694 (9 connections now open)
+2015-11-21T23:44:01.375+0900 I JOURNAL  [signalProcessingThread] journalCleanup...
+2015-11-21T23:44:01.375+0900 I JOURNAL  [signalProcessingThread] removeJournalFiles
+2015-11-21T23:44:01.376+0900 I JOURNAL  [signalProcessingThread] Terminating durability thread ...
+2015-11-21T23:44:01.471+0900 I JOURNAL  [journal writer] Journal writer thread stopped
+2015-11-21T23:44:01.471+0900 I JOURNAL  [durability] Durability thread stopped
+2015-11-21T23:44:01.471+0900 I STORAGE  [signalProcessingThread] shutdown: closing all files...
+2015-11-21T23:44:01.473+0900 I STORAGE  [signalProcessingThread] closeAllFiles() finished
+2015-11-21T23:44:01.473+0900 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+2015-11-21T23:44:01.473+0900 I CONTROL  [signalProcessingThread] dbexit:  rc: 0

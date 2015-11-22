@@ -17,7 +17,7 @@ var MongoStore = require('connect-mongo')(session);
 
 var User = require('./models/User');
 process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/chat_dev';
-process.env.PORT = 3002;
+process.env.PORT = 3000;
 mongoose.connect(process.env.MONGOLAB_URI);
 
 
@@ -49,9 +49,9 @@ app.use(passport.session());
 var messageRouter = express.Router();
 var usersRouter = express.Router();
 var channelRouter = express.Router();
-require('./routes/message_routes')(messageRouter);
-require('./routes/channel_routes')(channelRouter);
 require('./routes/user_routes')(usersRouter, passport);
+require('./routes/channel_routes')(channelRouter, passport);
+require('./routes/message_routes')(messageRouter, passport);
 // require('./server/routes/user_routes')(usersRouter)
 app.use('/api', messageRouter);
 app.use('/api', usersRouter);

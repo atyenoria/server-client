@@ -6,6 +6,8 @@ module.exports = function(router) {
 
   // query db for channel users
   router.get('/channels', function(req, res) {
+    console.log("+++++++++++++get channels+++++++++++++")
+    console.log(req.user);
 
     Channel.find({},{name: 1, id:1, _id:0}, function(err, data) {
       if(err) {

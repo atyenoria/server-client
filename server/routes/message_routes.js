@@ -6,6 +6,8 @@ module.exports = function(router) {
 
   //query db for messages
   router.get('/messages', function(req, res) {
+    console.log("+++++++++++++get messages+++++++++++++")
+    console.log(req.user);
     Message.find({}, {id: 1, channelID: 1, text: 1, user: 1, time: 1, _id: 0}, function(err, data) {
       if(err) {
         console.log(err);

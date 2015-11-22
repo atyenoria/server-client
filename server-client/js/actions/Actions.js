@@ -1,7 +1,8 @@
 import * as types from '../constants/ActionTypes';
 import * as UserAPIUtils from '../utils/UserAPIUtils';
 import fetch from 'isomorphic-fetch';
-var HOST='http://localhost:3002'
+
+var HOST='http://localhost:3000'
 
 
 export function addMessage(message) {

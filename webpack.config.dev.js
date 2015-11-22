@@ -3,10 +3,10 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
-  entry: [
+ entry: [
     // 'webpack-hot-middleware/client',
     'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
-    './client/index'
+    './server-client/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -26,7 +26,7 @@ module.exports = {
       loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'client')
+      include: path.join(__dirname, 'server-client')
     }, {
       test: /\.css?$/,
       loaders: ['style', 'raw']
