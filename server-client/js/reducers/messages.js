@@ -4,6 +4,8 @@ const initialState = {
   loaded: false,
   data: []
 };
+
+
 export default function messages(state = initialState, action) {
   switch (action.type) {
   case ADD_MESSAGE:

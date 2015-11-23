@@ -151,12 +151,6 @@ export default class SignUp extends Component {
               <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >Sign Up</p>
             </Button>
           </form>
-        <div style={{height: '3.5em', marginBottom: '1em', width: '12em', alignSelf: 'center', display: 'flex', marginLeft: '1em'}}>
-            <p style={{marginRight: '1em', marginTop: '1em'}}> Or </p>
-            <Link to="/chat">
-              <Button style={{margin: 'auto', height: '3.5em'}} bsStyle="default" >Sign in</Button>
-            </Link>
-          </div>
         </main>
       </div>
     );

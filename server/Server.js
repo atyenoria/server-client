@@ -9,7 +9,6 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var cors = require('cors');
 var app = express();
-var q = require('q');
 
 var passport = require('passport');
 require('./passport/passport')(passport);
@@ -20,8 +19,6 @@ var User = require('./models/User');
 process.env.MONGOLAB_URI = process.env.MONGOLAB_URI || 'mongodb://localhost/chat_dev';
 process.env.PORT = 3000;
 mongoose.connect(process.env.MONGOLAB_URI);
-
-
 
 
 

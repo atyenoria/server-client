@@ -13,6 +13,7 @@ import { DropdownButton, MenuItem } from 'react-bootstrap';
 export default class Chat extends Component {
 
 
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     actions: PropTypes.object.isRequired,
