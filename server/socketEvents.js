@@ -3,6 +3,7 @@ var count=0
 
 exports = module.exports = function(io) {
   io.on('connection', function(socket) {
+    console.log("+++++++++++++socketEvents+++++++++++++")
 
 
     if((count % 2) === 1){socket.join('room1')}else{
@@ -10,10 +11,6 @@ exports = module.exports = function(io) {
     }
 
     // socket.join('room2')
-
-
-    // console.log(count % 2)
-    console.log("+++++++++++++socketEvents+++++++++++++")
     count +=1
     // console.log(socket.nsp.server.engine.clients)
     // console.log(socket.nsp)
@@ -22,8 +19,9 @@ exports = module.exports = function(io) {
     // console.log("%s in room2 ", Object.keys(io.sockets.adapter.rooms['room2']).length);
     // console.log(io.sockets.adapter.rooms['room1'])
     // for (var clientId in clients) {
-    // console.log(io.sockets.connected[clientId]);
-    // }
+
+
+
     socket.emit('test',{test: "server ok"})
 
     socket.on('new message', function(msg) {
@@ -44,3 +42,5 @@ exports = module.exports = function(io) {
     });
   });
 }
+
+

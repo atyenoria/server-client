@@ -5,7 +5,6 @@ var path = require('path');
 var app = express();
 var http = require('http').Server(app);
 
-var mongoose = require('gulp-img2uri');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var cors = require('cors');
@@ -61,7 +60,7 @@ app.use('/api', usersRouter);
 app.use('/api', channelRouter);
 app.get('*', function(req, res) {
   // console.log(req)
-  res.sendFile(path.join(__dirname, './index.html'));
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 var proxy = require('express-http-proxy');
