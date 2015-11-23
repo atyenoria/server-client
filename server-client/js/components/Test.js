@@ -25,7 +25,7 @@ export default class WelcomePage extends Component {
 
 
   socket.on('gg', msg =>
-    console.log("specific user replay")
+    console.log(msg)
     )
   }
 

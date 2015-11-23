@@ -53,7 +53,8 @@ exports = module.exports = function(io) {
     console.log(socket.id)
     console.log("on:id msg")
     console.log(msg[0].id)
-    socket.to('room2').emit('gg',{test: "server ok"})
+    // socket.to('room2').emit('gg',{test: "msg1 ok"})
+    socket.to(msg[0].id).emit('gg',{test: "msg2 ok"})
   });
 
 
