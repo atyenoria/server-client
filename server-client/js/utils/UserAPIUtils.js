@@ -6,8 +6,6 @@ import { API_SERVER } from '../constants/etc.js';
 
 
 
-
-
 export function loadAuth(user) {
   return new Promise((resolve, reject) => {
 

@@ -4,13 +4,12 @@
   "description": "A new Webpack boilerplate with hot reloading React components, and error handling on module and component level.",
   "scripts": {
     "clean": "rimraf dist",
-    "start": "concurrent --kill-others \"npm run start-client\" \"npm run start-mongodb\" \"npm run start-redis\" \"npm run b\" ",
+    "start": "concurrent --kill-others \"npm run start-client\" \"npm run start-mongodb\" \"npm run start-redis\" ",
     "start-client": "nodemon --watch 'clientdev.js' --watch 'webpack.config.dev.js'  ./node_modules/better-npm-run start-client",
     "start-server": "sleep 0.3 &&nodemon --watch 'server/**/*' ./node_modules/better-npm-run start-server",
     "start-proxy": "nodemon --watch 'proxy-mongodb/proxy.js' ./node_modules/better-npm-run start-proxy",
     "start-mongodb": "rm .etc/proxy-mongodb/mongodb/* && node ./node_modules/better-npm-run start-mongodb",
     "start-redis": "node ./node_modules/better-npm-run start-redis",
-    "b": "/Users/jima/.nodebrew/current/bin/js-beautify -r server/**/*.js server/*.js",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "lint": "eslint src"
