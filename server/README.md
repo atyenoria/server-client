@@ -21,3 +21,13 @@ http://self-issued.info/docs/draft-ietf-oauth-v2-bearer.html#query-param
 #socket.io session
 https://github.com/jfromaniello/passport.socketio
 
+
+
+#ecma6 module
+http://www.2ality.com/2014/09/es6-modules-final.html
+
+
+
+#fetch
+https://github.com/github/fetch
+

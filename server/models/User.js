@@ -73,7 +73,6 @@ module.exports = mongoose.model('User', UserSchema);
 
 
 
-
 var UserSchema2 = mongoose.Schema({
     local: {
         username: {
@@ -95,11 +94,8 @@ var UserSchema2 = mongoose.Schema({
 module.exports = mongoose.model('User3', UserSchema2);
 // set up a mongoose model
 var Schema = mongoose.Schema;
-module.exports = mongoose.model('User2', new Schema({ 
-	name: String, 
-	password: String, 
-	admin: Boolean 
+module.exports = mongoose.model('User2', new Schema({
+    name: String,
+    password: String,
+    admin: Boolean
 }));
-
-
-
