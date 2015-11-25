@@ -2,33 +2,36 @@ var bcrypt = require('bcrypt-nodejs');
 var mongoose = require('mongoose');
 
 var UserSchema = mongoose.Schema({
-  local: {
-    username: { type: String, unique: true },
-    password: String,
-    email: String,
-    socketid: String,
-  },
-  facebook: {
-    id: String,
-    username: String,
-    token: String,
-    email: String,
-  }
+    local: {
+        username: {
+            type: String,
+            unique: true
+        },
+        password: String,
+        email: String,
+        socketid: String,
+    },
+    facebook: {
+        id: String,
+        username: String,
+        token: String,
+        email: String,
+    }
 });
 
 
 UserSchema.pre('save', function(next) {
-  // get the current date
-  var currentDate = new Date();
+    // get the current date
+    var currentDate = new Date();
 
-  // change the updated_at field to current date
-  this.updated_at = currentDate;
+    // change the updated_at field to current date
+    this.updated_at = currentDate;
 
-  // if created_at doesn't exist, add to that field
-  if (!this.created_at)
-    this.created_at = currentDate;
+    // if created_at doesn't exist, add to that field
+    if (!this.created_at)
+        this.created_at = currentDate;
 
-  next();
+    next();
 });
 
 
@@ -61,3 +64,42 @@ UserSchema.methods.validPassword = function(password) {
 };
 
 module.exports = mongoose.model('User', UserSchema);
+
+
+
+
+
+
+
+
+
+
+var UserSchema2 = mongoose.Schema({
+    local: {
+        username: {
+            type: String,
+            unique: true
+        },
+        password: String,
+        email: String,
+        socketid: String,
+    },
+    facebook: {
+        id: String,
+        username: String,
+        token: String,
+        email: String,
+    }
+});
+
+module.exports = mongoose.model('User3', UserSchema2);
+// set up a mongoose model
+var Schema = mongoose.Schema;
+module.exports = mongoose.model('User2', new Schema({ 
+	name: String, 
+	password: String, 
+	admin: Boolean 
+}));
+
+
+

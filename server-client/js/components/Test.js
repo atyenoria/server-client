@@ -6,6 +6,7 @@ import { Input, Button } from 'react-bootstrap';
 import FBSignIn from './FBSignIn';
 import strftime from 'strftime';
 
+
 import { SOCKET_SERVER } from '../constants/etc.js';
 const socket = io.connect(SOCKET_SERVER,{'reconnect': false })
 
@@ -20,13 +21,12 @@ export default class WelcomePage extends Component {
 
   componentDidMount() {
   socket.on('socketid', msg =>
-    this.setState({ mysocketid: msg })
+    this.setState({ mysocket_id: msg })
     )
+  socket.on('connect', function () {
+      socket.emit('authenticate', {token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE0NDgzNzU0MjJ9.D36z6zz-gFncPbVOdMznqXGUeDhgBsfn1sLmxJGnICk"});
+    });
 
-
-  socket.on('gg', msg =>
-    console.log(msg)
-    )
   }
 
 
@@ -59,7 +59,6 @@ export default class WelcomePage extends Component {
   console.log(this.state.emit_body)
   socket.emit('id msg',[{id: this.state.isocket_id}, {id: this.state.emit_body}]);
   this.setState({ isocket_id: '', emit_body: '' });
-
   }
 
   handleChangeBody(event) {
@@ -68,6 +67,24 @@ export default class WelcomePage extends Component {
   handleChangeSocketId(event) {
     this.setState({ isocket_id: event.target.value });
   }
+
+
+  handleEventEmitSubmit(event) {
+  console.log(this.state.emit_event_name)
+  console.log(this.state.emit_event_body)
+  socket.emit(this.state.emit_event_name, this.state.emit_event_body);
+  this.setState({ emit_event_name: '', emit_event_body: '' });
+  }
+
+  handleChangeEventName(event) {
+    this.setState({ emit_event_name: event.target.value });
+  }
+  handleChangeEventBody(event) {
+    this.setState({ emit_event_body: event.target.value });
+  }
+
+
+
   handleChatBody(event) {
     this.setState({ chat_body: event.target.value });
   }
@@ -78,6 +95,7 @@ export default class WelcomePage extends Component {
   render() {
 
    const message  = this.state.message
+   // var clipboard = new Clipboard('.btn')
 
     return (
       <div>
@@ -86,11 +104,12 @@ export default class WelcomePage extends Component {
         </header>
 
 
-              <Button bsStyle="success" style={{width: '80%', height: '3rem', marginTop: '2rem'}} onClick={::this.RestartSocket} type="submit">
+              <Button bsStyle="success" onClick={::this.RestartSocket} type="submit">
               <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >Restart Socket </p>
               </Button>
-              <p style={{color: 'black', fontSize: '1.5em'}} >ID: {this.state.mysocketid} </p>
-
+              <Button  bsStyle="success"   >
+              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} > My ID:  {this.state.mysocket_id} </p>
+              </Button>
 
 
 
@@ -99,28 +118,53 @@ export default class WelcomePage extends Component {
               label="isocket_id"
               ref="usernameInput"
               type="text"
+              style={{ width: '50%' }}
               name="username"
               placeholder="Enter socket id"
               value={this.state.isocket_id}
-              onChange={::this.handleChangeSocketId}
-            />
+              onChange={::this.handleChangeSocketId}  />
             <Input
               label="emit_body"
               ref="usernameInput"
+              style={{ width: '50%' }}
               type="text"
               name="username"
               placeholder="Enter body message"
               value={this.state.emit_body}
-              onChange={::this.handleChangeBody}
-            />
+              onChange={::this.handleChangeBody} />
             <Button
               bsStyle="success"
-              style={{width: '80%', height: '3rem'}}
               onClick={::this.handleEmitSubmit}
+              style={{  margin: '1em' }}
               type="submit">
-              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >Emit</p>
+              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >ID Emit</p>
             </Button>
 
+
+              <Input
+              label="emit_event_name"
+              ref="usernameInput"
+              type="text"
+              name="username"
+              placeholder="Enter event name"
+              value={this.state.emit_event_name}
+              onChange={::this.handleChangeEventName} />
+            <Input
+              label="emit_event_body"
+              ref="usernameInput"
+              style={{ width: '50%' }}
+              type="text"
+              name="username"
+              placeholder="Enter emit body message"
+              value={this.state.emit_event_body}
+              onChange={::this.handleChangeEventBody} />
+            <Button
+              bsStyle="success"
+              onClick={::this.handleEventEmitSubmit}
+              style={{  margin: '1em' }}
+              type="submit">
+              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >Event Emit</p>
+            </Button>
 
 
 
@@ -157,18 +201,30 @@ export default class WelcomePage extends Component {
 
 
 
-  RestartSocket(event) {
+  RestartSocket() {
     // socket.disconnect(SOCKET_SERVER)
-    // socket.close()
-    // socket.connect(SOCKET_SERVER,{'reconnect': false })
+    // const socket = io.connect(SOCKET_SERVER,{'reconnect': false })
+    // socket.destroy()
+    socket.connect(SOCKET_SERVER,{'reconnect': false })
+
+    socket.removeAllListeners()
     // console.log(socket)
 
-    socket.emit('restart')
+    // socket.emit('restart')
 
     socket.on('socketid', msg =>
       console.log(msg)
     // this.setState({ socketid: msg })
     )
+
+
+        // socket.emit('restart')
+
+    socket.on('soc', msg =>
+      console.log(msg)
+    // this.setState({ socketid: msg })
+    )
+
 
     socket.on('new bc message', msg =>
     this.setState({message: [...this.state.message, msg] })
@@ -187,7 +243,12 @@ export default class WelcomePage extends Component {
     console.log(msg)
     )
 
-    // console.log(socket)
+    socket.on('gg', msg =>
+    console.log(msg)
+    )
+
+
+     socket.emit('authenticate', {token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE0NDgzNzU0MjJ9.D36z6zz-gFncPbVOdMznqXGUeDhgBsfn1sLmxJGnICk"});
 
   }
 
@@ -210,6 +271,8 @@ export default class WelcomePage extends Component {
       chat_body: '',
       mysocket_id: '',
       isocket_id: '',
+      emit_event_body: '',
+      emit_event_name: '',
       typing: false
     };
   }

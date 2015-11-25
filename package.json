@@ -4,12 +4,13 @@
   "description": "A new Webpack boilerplate with hot reloading React components, and error handling on module and component level.",
   "scripts": {
     "clean": "rimraf dist",
-    "start": "concurrent --kill-others \"npm run start-client\" \"npm run start-mongodb\" \"npm run start-redis\"",
+    "start": "concurrent --kill-others \"npm run start-client\" \"npm run start-mongodb\" \"npm run start-redis\" \"npm run b\" ",
     "start-client": "nodemon --watch 'clientdev.js' --watch 'webpack.config.dev.js'  ./node_modules/better-npm-run start-client",
     "start-server": "sleep 0.3 &&nodemon --watch 'server/**/*' ./node_modules/better-npm-run start-server",
     "start-proxy": "nodemon --watch 'proxy-mongodb/proxy.js' ./node_modules/better-npm-run start-proxy",
     "start-mongodb": "rm .etc/proxy-mongodb/mongodb/* && node ./node_modules/better-npm-run start-mongodb",
     "start-redis": "node ./node_modules/better-npm-run start-redis",
+    "b": "/Users/jima/.nodebrew/current/bin/js-beautify -r server/**/*.js server/*.js",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "lint": "eslint src"
@@ -44,6 +45,9 @@
       "env": {
         "NODE_ENV": "development"
       }
+    },
+     "start-beautify": {
+      "command": "js-beautify -r server"
     }
   },
   "repository": {
@@ -93,12 +97,15 @@
     "bcrypt-nodejs": "0.0.3",
     "better-npm-run": "0.0.4",
     "body-parser": "^1.14.1",
+    "clipboard": "^1.5.5",
     "colors": "^1.1.2",
     "concurrently": "^1.0.0",
     "connect-mongo": "^0.8.2",
     "cors": "^2.7.1",
     "css-loader": "^0.23.0",
+    "debug": "^2.2.0",
     "express-http-proxy": "^0.6.0",
+    "express-jwt": "^3.3.0",
     "express-session": "^1.12.1",
     "history": "^1.13.1",
     "http-proxy": "^1.12.0",
