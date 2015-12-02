@@ -6,7 +6,7 @@ module.exports = {
  entry: [
     // 'webpack-hot-middleware/client',
     'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
-    './server-client/index'
+    './src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -26,7 +26,7 @@ module.exports = {
       loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'server-client')
+      include: path.join(__dirname, 'src')
     }, {
       test: /\.css?$/,
       loaders: ['style', 'raw']

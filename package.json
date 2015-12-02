@@ -8,7 +8,7 @@
     "start-client": "nodemon --watch 'clientdev.js' --watch 'webpack.config.dev.js'  ./node_modules/better-npm-run start-client",
     "start-server": "sleep 0.3 &&nodemon --watch 'server/**/*' ./node_modules/better-npm-run start-server",
     "start-proxy": "nodemon --watch 'proxy-mongodb/proxy.js' ./node_modules/better-npm-run start-proxy",
-    "start-mongodb": "rm .etc/proxy-mongodb/mongodb/* && node ./node_modules/better-npm-run start-mongodb",
+    "start-mongodb": "rm log/* && node ./node_modules/better-npm-run start-mongodb",
     "start-redis": "node ./node_modules/better-npm-run start-redis",
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
@@ -34,7 +34,7 @@
       }
     },
     "start-mongodb": {
-      "command": "mongod --logpath .etc/proxy-mongodb/mongodb/mongodb.log",
+      "command": "mongod --logpath log/mongodb.log",
       "env": {
         "NODE_ENV": "development"
       }
