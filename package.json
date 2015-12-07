@@ -45,7 +45,7 @@
         "NODE_ENV": "development"
       }
     },
-     "start-beautify": {
+    "start-beautify": {
       "command": "js-beautify -r server"
     }
   },
@@ -130,6 +130,7 @@
     "superagent": "^1.4.0",
     "superagent-cache": "^1.0.5",
     "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.5.0"
+    "webpack-hot-middleware": "^2.5.0",
+    "whatwg-fetch": "^0.10.1"
   }
 }

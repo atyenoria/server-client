@@ -23,7 +23,7 @@ export default class Root extends Component {
       <div className="root">
         <Provider store={store} >
           <Router history={history}>
-            <Redirect from="/" to="/welcome" />
+            <Redirect from="/" to="/test" />
              <Redirect from="/_=_" to="/chat" />
             <Route path="/welcome" component={WelcomePage} />
             <Route path="/chat" component={ChatContainer} />

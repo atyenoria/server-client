@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { Input, Button } from 'react-bootstrap';
 import FBSignIn from './FBSignIn';
 import strftime from 'strftime';
-
-
-import { SOCKET_SERVER } from '../constants/etc.js';
 const socket = io.connect(SOCKET_SERVER,{'reconnect': false })
+var l = console.log
+import { SOCKET_SERVER } from '../constants/etc.js';
+
 
 
 
@@ -19,13 +19,9 @@ export default class WelcomePage extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
+
+
   componentDidMount() {
-  socket.on('socketid', msg =>
-    this.setState({ mysocket_id: msg })
-    )
-  socket.on('connect', function () {
-      socket.emit('authenticate', {token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE0NDgzNzU0MjJ9.D36z6zz-gFncPbVOdMznqXGUeDhgBsfn1sLmxJGnICk"});
-    });
 
   }
 
@@ -47,7 +43,7 @@ export default class WelcomePage extends Component {
       console.log(this.state.isocket_id)
       console.log(this.state.body)
 
-      socket.emit('new message', newMessage, "/");
+      socket.emit('create message', newMessage, "/");
       this.setState({ body: '', typing: false });
       this.setState({ socketid: '', typing: false });
       socket.emit('stop typing');
@@ -103,6 +99,18 @@ export default class WelcomePage extends Component {
           <p style={{fontSize: '1.5em', marginRight: '1em'}}> Socket.io Test</p>
         </header>
 
+
+          <Button bsStyle="success" onClick={::this.SendEvent} type="submit">
+              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >Send Event </p>
+          </Button>
+
+          <Button bsStyle="success" onClick={::this.CustomerMode} type="submit">
+              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >Customer Mode </p>
+          </Button>
+
+          <Button bsStyle="success" onClick={::this.OwnerMode} type="submit">
+              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >Owner Mode </p>
+          </Button>
 
               <Button bsStyle="success" onClick={::this.RestartSocket} type="submit">
               <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >Restart Socket </p>
@@ -179,8 +187,35 @@ export default class WelcomePage extends Component {
                       onKeyDown={::this.handleChatSubmit} />
 
 
+          <Button
+              bsStyle="success"
+              onClick={::this.GetInitialMsg}
+              style={{  margin: '1em' }}
+              type="submit">
+              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >GetInitialMsg</p>
+          </Button>
+          <Button
+              bsStyle="success"
+              onClick={::this.GetCustomerInfo}
+              style={{  margin: '1em' }}
+              type="submit">
+              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >GetCustomerInfo</p>
+          </Button>
 
-    <section style={{height: '2em'}}>
+          <Button
+              bsStyle="success"
+              onClick={::this.GetOwnerInfo}
+              style={{  margin: '1em' }}
+              type="submit">
+              <p style={{color: 'white', margin: '0', padding: '0', fontSize: '1.5em'}} >GetOwnerInfo</p>
+          </Button>
+
+
+
+
+
+
+    <section style={{marginTop: '3rem',height: '2em'}}>
       <ul style={{wordWrap: 'break-word', margin: '0', overflowY: 'auto', padding: '0', width: '100%', flexGrow: '1', order: '1'}} ref="messageList">
             { message.map( message =>
             <li>
@@ -194,63 +229,129 @@ export default class WelcomePage extends Component {
         </ul>
      </section>
 
+
+
+
       </div>
     )
   }
 
 
 
+    GetInitialMsg(){
+
+        fetch('/users', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: 'Hubot',
+                login: 'hubot',
+            })
+        })
+    }
+
+    GetCustomerInfo(){
+        socket.emit('customer number');
+        socket.on('replay customer number', msg =>
+            console.log(msg)
+        )
+    }
+
+    GetOwnerInfo(){
+        socket.emit('owner number');
+        socket.on('replay owner number', msg =>
+            console.log(msg)
+        )
+    }
+
+
 
   RestartSocket() {
-    // socket.disconnect(SOCKET_SERVER)
-    // const socket = io.connect(SOCKET_SERVER,{'reconnect': false })
-    // socket.destroy()
     socket.connect(SOCKET_SERVER,{'reconnect': false })
-
     socket.removeAllListeners()
-    // console.log(socket)
-
-    // socket.emit('restart')
-
     socket.on('socketid', msg =>
       console.log(msg)
     // this.setState({ socketid: msg })
     )
-
-
-        // socket.emit('restart')
-
-    socket.on('soc', msg =>
-      console.log(msg)
-    // this.setState({ socketid: msg })
-    )
-
 
     socket.on('new bc message', msg =>
     this.setState({message: [...this.state.message, msg] })
     )
-
     socket.on('socketid', msg =>
       console.log(msg)
     // this.setState({ socketid: msg })
     )
-
     socket.on('test', msg =>
     console.log(msg)
     )
-
-    socket.on('new msg', msg =>
-    console.log(msg)
-    )
-
-    socket.on('gg', msg =>
-    console.log(msg)
-    )
-
-
-     socket.emit('authenticate', {token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE0NDgzNzU0MjJ9.D36z6zz-gFncPbVOdMznqXGUeDhgBsfn1sLmxJGnICk"});
-
   }
+
+
+    SendEvent() {
+
+
+        var newMessage = {
+            id: Date.now(),
+            time: strftime('%H:%M %p', new Date()),
+            body: "text"
+        };
+
+        console.log("sample")
+        console.log(this.state.isocket_id)
+        console.log(this.state.body)
+
+        socket.emit('customer msg', newMessage);
+
+    }
+
+
+
+
+
+
+    CustomerMode() {
+        socket.connect(SOCKET_SERVER,{'reconnect': false })
+        socket.removeAllListeners()
+
+        socket.on('socketid', msg =>
+            this.setState({ mysocket_id: msg })
+        )
+
+
+
+        console.log("CustomerMode() {)")
+
+        //socket.on('connect', function () {
+        socket.emit('authenticate', {token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiY3VzdG9tZXIiLCJyb29tIjoidGVzdCIsImlhdCI6MTQ0OTMyMjM4Mn0.6RyXNnSrg1ju4qcXyyN6ajc6M8S-do5xspYjac7suYY"});
+        //});
+
+
+    }
+
+
+
+    OwnerMode() {
+        socket.connect(SOCKET_SERVER,{'reconnect': false })
+        socket.removeAllListeners()
+
+
+        socket.on('socketid', msg =>
+            this.setState({ mysocket_id: msg })
+        )
+
+
+
+        //test mode
+        //socket.on('connect', function () {
+            socket.emit('authenticate', {token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoib3duZXIiLCJyb29tIjoidGVzdCIsImlhdCI6MTQ0OTMyMjE2Nn0.dsJnVr2xqMrNAirrXHVD3M60TfpHfRoDiRRSYy3V9xA"});
+        //});
+
+    }
+
+
 
 
   constructor(props, context) {
